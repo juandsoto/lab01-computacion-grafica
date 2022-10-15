@@ -54,6 +54,7 @@ ul {
   flex-direction: column;
 }
 
+.r1_simulation,
 .r2_simulation {
   display: flex;
   align-items: center;
@@ -62,6 +63,7 @@ ul {
   gap: 1rem;
 }
 
+.r1_projectile_positions,
 .r2_projectile_positions {
   display: flex;
   gap: 1rem;

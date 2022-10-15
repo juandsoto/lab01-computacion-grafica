@@ -1,6 +1,7 @@
 import { Canvas, R1, R2, R3 } from './classes';
-import Projectile from './classes/Projectile';
+import R2Projectile from './classes/R2Projectile';
 import Point from './classes/Point';
+import R1Projectile from './classes/R1Projectile';
 
 //R1
 const canvasR1 = new Canvas();
@@ -44,7 +45,43 @@ const R3coordinates = document.querySelector('.r3_coordinates') as HTMLElement;
 R3coordinates.innerHTML = `(${R3_COORDINATES.x}, ${R3_COORDINATES.y}, ${R3_COORDINATES.z})`;
 r3.draw(R3_COORDINATES.x, R3_COORDINATES.y, R3_COORDINATES.z);
 
-// PROJECTILE
+// PROJECTILE R1
+
+const startR1ProjectileButton = document.querySelector(
+  '.startR1Projectile',
+) as HTMLButtonElement;
+startR1ProjectileButton.addEventListener('click', startR1Projectile);
+
+function startR1Projectile() {
+  clearR1Simulation();
+  clearR2Simulation();
+  const interval = 500;
+  const randomV0 = Math.max(1, Math.floor(Math.random() * 10));
+  const randomX = Math.floor(Math.random() * 10);
+  const randomP0 = randomX;
+  const randomP0String = randomP0.toString();
+  const details: string[] = [
+    `Posición inicial: ${randomP0String}`,
+    `Velocidad: ${randomV0.toString()}`,
+    `Intervalo: ${interval.toString()}`,
+  ];
+  const detailsContainer = document.querySelectorAll('.r1_details');
+  detailsContainer.forEach((d, i) => (d.innerHTML = details[i]));
+
+  const projectile = new R1Projectile(randomV0, randomP0);
+  projectile.update(interval);
+}
+
+function clearR1Simulation() {
+  R1Projectile.clearInterval();
+  const coordinates = document.querySelectorAll(
+    '.r1_coordinate',
+  ) as NodeListOf<HTMLSpanElement>;
+  console.log({ coordinates });
+  coordinates.forEach((c) => c.remove());
+}
+
+// PROJECTILE R2
 
 const startR2ProjectileButton = document.querySelector(
   '.startR2Projectile',
@@ -52,7 +89,9 @@ const startR2ProjectileButton = document.querySelector(
 startR2ProjectileButton.addEventListener('click', startR2Projectile);
 
 function startR2Projectile() {
+  clearR1Simulation();
   clearR2Simulation();
+
   const interval = 500;
   const randomV0 = Math.max(1, Math.floor(Math.random() * 10));
   const randomX = Math.floor(Math.random() * 10);
@@ -67,11 +106,12 @@ function startR2Projectile() {
   const detailsContainer = document.querySelectorAll('.r2_details');
   detailsContainer.forEach((d, i) => (d.innerHTML = details[i]));
 
-  const projectile = new Projectile(randomV0, randomP0);
+  const projectile = new R2Projectile(randomV0, randomP0);
   projectile.update(interval);
 }
 
 function clearR2Simulation() {
+  R2Projectile.clearInterval();
   const coordinates = document.querySelectorAll(
     '.r2_coordinate',
   ) as NodeListOf<HTMLSpanElement>;
