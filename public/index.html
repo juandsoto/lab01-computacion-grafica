@@ -2,17 +2,60 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Web site created using create-snowpack-app" />
+    <meta
+      name="description"
+      content="Web site created using create-snowpack-app"
+    />
     <link rel="stylesheet" type="text/css" href="/index.css" />
-    <title>Snowpack App</title>
+    <title>Lab01</title>
   </head>
   <body>
-    <img id="img" src="/logo.svg" />
-    <canvas id="canvas"></canvas>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <script type="module" src="/dist/index.js"></script>
+    <main>
+      <section>
+        <div class="vector_box">
+          <h1>Vector en R1</h1>
+          <canvas id="canvas_r1" width="420" height="240"></canvas>
+          <p>
+            (x) =
+            <span class="r1_coordinates"></span>
+          </p>
+        </div>
+        <div class="vector_box">
+          <h1>Vector en R2</h1>
+          <canvas id="canvas_r2" width="420" height="240"></canvas>
+          <p>
+            (x,y) =
+            <span class="r2_coordinates"></span>
+          </p>
+        </div>
+        <div class="vector_box">
+          <h1>Vector en R3</h1>
+          <canvas id="canvas_r3" width="420" height="240"></canvas>
+          <p>
+            (x,y,z) =
+            <span class="r3_coordinates">(1,2,3)</span>
+          </p>
+          <p>(z es el nuevo eje)</p>
+        </div>
+      </section>
+      <section class="simulation">
+        <h1>Simulación</h1>
+        <div class="r1_simulation">
+          <button class="startR1Projectile">Start R1 Simulation</button>
+          <div class="r1_projectile_positions"></div>
+        </div>
+        <div class="r2_simulation">
+          <button class="startR2Projectile">Start R2 Simulation</button>
+          <ul class="r2_simulation_details">
+            <li class="r2_details r2_p0"></li>
+            <li class="r2_details r2_v0"></li>
+            <li class="r2_details r2_interval"></li>
+          </ul>
+          <div class="r2_projectile_positions"></div>
+        </div>
+      </section>
+    </main>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -23,5 +66,6 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script src="dist/index.js" type="module"></script>
   </body>
 </html>
